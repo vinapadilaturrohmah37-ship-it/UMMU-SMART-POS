@@ -170,4 +170,53 @@ header {
     }
 }
 
+.form-produk {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.form-produk input {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+}
+
+.form-produk button {
+    background: #087e8b;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 12px;
+    cursor: pointer;
+}
+
+#contentArea table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#contentArea th,
+#contentArea td {
+    border: 1px solid #cbd5e1;
+    padding: 12px;
+    text-align: left;
+}
+
+#contentArea th {
+    background: #071b35;
+    color: white;
+}
+
+#contentArea td button {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 
