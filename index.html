@@ -1,0 +1,44 @@
+
+<!-- DASHBOARD UMMU SMART POS -->
+
+<div id="dashboardPage" class="dashboard" style="display:none;">
+
+    <header>
+        <link rel="stylesheet" href="style.css">
+        <h2>Dashboard UMMU SMART POS</h2>
+        <button onclick="logout()">Logout</button>
+    </header>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Penjualan</h3>
+            <p id="totalPenjualan">Rp 0</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Transaksi</h3>
+            <p id="totalTransaksi">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Jumlah Produk</h3>
+            <p id="jumlahProduk">0</p>
+        </div>
+
+    </div>
+
+    <div class="menu">
+        <button onclick="showMenu('produk')">Produk</button>
+        <button onclick="showMenu('transaksi')">Transaksi</button>
+        <button onclick="showMenu('laporan')">Laporan</button>
+    </div>
+
+    <div id="contentArea">
+        <h3>Selamat Datang di UMMU SMART POS</h3>
+        <p>Silakan pilih menu untuk memulai.</p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
