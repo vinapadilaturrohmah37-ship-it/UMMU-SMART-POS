@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMMU SMART POS</title>
+
+    <!-- Menghubungkan CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HALAMAN LOGIN -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <h1>UMMU SMART POS</h1>
+            <p>Sistem Kasir Pintar</p>
+
+            <form id="loginForm">
+                <label>Username</label>
+                <input type="text" id="username"
+                    placeholder="Masukkan username" required>
+
+                <label>Password</label>
+                <input type="password" id="password"
+                    placeholder="Masukkan password" required>
+
+                <button type="submit">LOGIN</button>
+            </form>
+
+            <p class="login-info">
+                © 2026 UMMU SMART POS
+            </p>
+        </div>
+    </div>
+
+
+    <!-- HALAMAN DASHBOARD -->
+    <div id="dashboardPage" class="dashboard" style="display:none;">
+
+        <header>
+            <h2>UMMU SMART POS</h2>
+            <button onclick="logout()">Keluar</button>
+        </header>
+
+        <main>
+            <h2>Dashboard Kasir</h2>
+            <p>Selamat datang di UMMU SMART POS</p>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Total Penjualan</h3>
+                    <h2 id="totalPenjualan">Rp0</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Total Transaksi</h3>
+                    <h2 id="totalTransaksi">0</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Jumlah Produk</h3>
+                    <h2 id="jumlahProduk">0</h2>
+                </div>
+
+            </div>
+
+            <section class="menu">
+                <h2>Menu Utama</h2>
+
+                <button onclick="showMenu('produk')">
+                    Data Produk
+                </button>
+
+                <button onclick="showMenu('transaksi')">
+                    Transaksi Kasir
+                </button>
+
+                <button onclick="showMenu('laporan')">
+                    Laporan Penjualan
+                </button>
+            </section>
+
+            <section id="contentArea">
+                <h3>Selamat bekerja!</h3>
+                <p>Silakan pilih menu untuk memulai.</p>
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- Menghubungkan JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+<button onclick="logout()">Keluar</button>
