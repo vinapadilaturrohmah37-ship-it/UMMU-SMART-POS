@@ -1,0 +1,79 @@
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMMU SMART POS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="loginPage" class="login-container">
+<div class="login-box">
+<h1>UMMU</h1>
+<p class="subtitle">SMART POS</p>
+<h2>Selamat Datang!</h2>
+<p>Masuk ke aplikasi kasir</p>
+
+<select id="role">
+<option value="admin">Login Admin</option>
+<option value="pelanggan">Login Pelanggan</option>
+</select>
+
+<form id="loginForm">
+<input id="username" placeholder="Username" required>
+<input id="password" type="password" placeholder="Password" required>
+<button type="submit">LOGIN</button>
+</form>
+
+<p class="hint">
+Admin: admin / 12345<br>
+Pelanggan: pelanggan / 12345
+</p>
+</div>
+</section>
+
+<section id="dashboardPage" class="dashboard" style="display:none">
+<header>
+<div>
+<h2>UMMU SMART POS</h2>
+<p>Sistem Kasir Pintar</p>
+</div>
+<div>
+<span id="userInfo"></span>
+<button class="logout" onclick="logout()">Logout</button>
+</div>
+</header>
+
+<div id="adminArea">
+<h2 class="welcome">Dashboard Admin</h2>
+
+<div class="cards">
+<div class="card"><h3>Total Penjualan</h3><p id="totalPenjualan">Rp 0</p></div>
+<div class="card"><h3>Total Transaksi</h3><p id="totalTransaksi">0</p></div>
+<div class="card"><h3>Jumlah Produk</h3><p id="jumlahProduk">0</p></div>
+</div>
+
+<nav class="menu">
+<button onclick="showMenu('produk')">Data Produk</button>
+<button onclick="showMenu('transaksi')">Transaksi</button>
+<button onclick="showMenu('laporan')">Laporan</button>
+</nav>
+</div>
+
+<div id="customerArea" style="display:none">
+<h2 class="welcome">Katalog Belanja</h2>
+<button class="menu-button" onclick="showMenu('transaksi')">Buka Keranjang Belanja</button>
+</div>
+
+<main id="contentArea">
+<h3>Selamat datang di UMMU SMART POS!</h3>
+<p>Silakan pilih menu.</p>
+</main>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
