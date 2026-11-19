@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMMU SMART POS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loginPage" class="login-container">
+    <div class="login-box">
+        <div class="brand">
+            <div class="brand-icon">U</div>
+            <h1>UMMU</h1>
+            <p>SMART POINT OF SALE</p>
+        </div>
+
+        <h2>Selamat Datang!</h2>
+        <p class="login-desc">Silakan masuk untuk melanjutkan</p>
+
+        <label>Masuk Sebagai</label>
+        <select id="role">
+            <option value="admin">Admin</option>
+            <option value="pelanggan">Pelanggan</option>
+        </select>
+
+        <form id="loginForm">
+            <label>Username</label>
+            <input type="text" id="username" placeholder="Masukkan username" required>
+
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Masukkan password" required>
+
+            <button class="primary-btn" type="submit">MASUK SEKARANG</button>
+        </form>
+
+        <div class="demo-account">
+            <b>Akun Demo</b>
+            <p>Admin: admin / 12345</p>
+            <p>Pelanggan: pelanggan / 12345</p>
+        </div>
+    </div>
+</div>
+
+<div id="dashboardPage" style="display:none;">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <h2>UMMU</h2>
+            <p>SMART POS</p>
+        </div>
+
+        <div class="side-menu" id="adminMenu">
+            <button onclick="showMenu('dashboard')">⌂ Dashboard</button>
+            <button onclick="showMenu('produk')">▣ Data Produk</button>
+            <button onclick="showMenu('transaksi')">🛒 Transaksi</button>
+            <button onclick="showMenu('laporan')">▤ Laporan</button>
+        </div>
+
+        <div class="side-menu" id="customerMenu" style="display:none;">
+            <button onclick="showMenu('belanja')">▣ Katalog Barang</button>
+            <button onclick="showMenu('transaksi')">🛒 Keranjang</button>
+            <button onclick="showMenu('riwayat')">▤ Riwayat Belanja</button>
+        </div>
+
+        <button class="sidebar-logout" onclick="logout()">↪ Keluar</button>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <h2>UMMU SMART POS</h2>
+                <p>Sistem Kasir Pintar</p>
+            </div>
+            <div class="user-badge" id="userInfo">Admin</div>
+        </header>
+
+        <div id="contentArea"></div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
