@@ -4,85 +4,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#7041A6">
     <title>UMMU SMART POS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="loginPage" class="login-container">
-    <div class="login-box">
-        <div class="brand">
-            <div class="brand-icon">U</div>
-            <h1>UMMU</h1>
-            <p>SMART POINT OF SALE</p>
-        </div>
+    <div class="login-container" id="loginPage">
+        <div class="login-card">
 
-        <h2>Selamat Datang!</h2>
-        <p class="login-desc">Silakan masuk untuk melanjutkan</p>
+            <div class="logo">U</div>
 
-        <label>Masuk Sebagai</label>
-        <select id="role">
-            <option value="admin">Admin</option>
-            <option value="pelanggan">Pelanggan</option>
-        </select>
+            <h1>UMMU SMART POS</h1>
+            <p class="subtitle">Smart Point Of Sale System</p>
 
-        <form id="loginForm">
-            <label>Username</label>
-            <input type="text" id="username" placeholder="Masukkan username" required>
+            <div class="role-selection">
+                <button class="role-btn active" onclick="selectRole('admin', this)">
+                    Admin
+                </button>
 
-            <label>Password</label>
-            <input type="password" id="password" placeholder="Masukkan password" required>
+                <button class="role-btn" onclick="selectRole('customer', this)">
+                    Pelanggan
+                </button>
+            </div>
 
-            <button class="primary-btn" type="submit">MASUK SEKARANG</button>
-        </form>
+            <form id="loginForm">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Masukkan username" required>
 
-        <div class="demo-account">
-            <b>Akun Demo</b>
-            <p>Admin: admin / 12345</p>
-            <p>Pelanggan: pelanggan / 12345</p>
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Masukkan password" required>
+
+                <button type="submit" class="login-btn">
+                    MASUK SEKARANG
+                </button>
+            </form>
+
+            <p class="login-info" id="loginInfo">
+                Login sebagai Admin
+            </p>
+
         </div>
     </div>
-</div>
 
-<div id="dashboardPage" style="display:none;">
+    <div class="dashboard" id="dashboardPage" hidden>
 
-    <aside class="sidebar">
-        <div class="sidebar-brand">
-            <h2>UMMU</h2>
-            <p>SMART POS</p>
-        </div>
-
-        <div class="side-menu" id="adminMenu">
-            <button onclick="showMenu('dashboard')">⌂ Dashboard</button>
-            <button onclick="showMenu('produk')">▣ Data Produk</button>
-            <button onclick="showMenu('transaksi')">🛒 Transaksi</button>
-            <button onclick="showMenu('laporan')">▤ Laporan</button>
-        </div>
-
-        <div class="side-menu" id="customerMenu" style="display:none;">
-            <button onclick="showMenu('belanja')">▣ Katalog Barang</button>
-            <button onclick="showMenu('transaksi')">🛒 Keranjang</button>
-            <button onclick="showMenu('riwayat')">▤ Riwayat Belanja</button>
-        </div>
-
-        <button class="sidebar-logout" onclick="logout()">↪ Keluar</button>
-    </aside>
-
-    <main class="main-content">
-        <header class="topbar">
-            <div>
-                <h2>UMMU SMART POS</h2>
-                <p>Sistem Kasir Pintar</p>
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <span>U</span>
+                <h2>UMMU POS</h2>
             </div>
-            <div class="user-badge" id="userInfo">Admin</div>
-        </header>
 
-        <div id="contentArea"></div>
-    </main>
-</div>
+            <p class="menu-title">MENU UTAMA</p>
 
-<script src="script.js"></script>
+            <button class="menu-btn active" onclick="showPage('dashboard')">
+                🏠 Dashboard
+            </button>
+
+            <button class="menu-btn" onclick="showPage('products')">
+                📦 Produk
+            </button>
+
+            <button class="menu-btn" onclick="showPage('transactions')">
+                🛒 Transaksi
+            </button>
+
+            <button class="menu-btn" onclick="showPage('reports')">
+                📊 Laporan
+            </button>
+
+            <button class="logout-btn" onclick="logout()">
+                Keluar
+            </button>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <h2 id="welcomeTitle">Dashboard</h2>
+                    <p>Selamat datang di UMMU SMART POS</p>
+                </div>
+
+                <div class="profile">
+                    <span>👤</span>
+                    <strong id="profileName">Admin</strong>
+                </div>
+            </header>
+
+            <section id="dashboardSection">
+                <div class="welcome-card">
+                    <div>
+                        <h2>Selamat Datang! 💜</h2>
+                        <p>Kelola penjualan tokomu dengan mudah.</p>
+                    </div>
+                    <div class="welcome-icon">💛</div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <p>Total Produk</p>
+                        <h2 id="totalProducts">0</h2>
+                    </div>
+
+                    <div class="stat-card">
+                        <p>Total Transaksi</p>
+                        <h2 id="totalTransactions">0</h2>
+                    </div>
+
+                    <div class="stat-card">
+                        <p>Total Penjualan</p>
+                        <h2 id="totalSales">Rp0</h2>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Informasi Aplikasi</h3>
+                    <p>UMMU SMART POS siap membantu kegiatan penjualan tokomu.</p>
+                </div>
+            </section>
+
+            <section id="productsSection" hidden>
+                <div class="content-card">
+                    <h2>Manajemen Produk</h2>
+                    <p>Halaman pengelolaan produk akan kita lengkapi berikutnya.</p>
+                </div>
+            </section>
+
+            <section id="transactionsSection" hidden>
+                <div class="content-card">
+                    <h2>Transaksi Penjualan</h2>
+                    <p>Halaman transaksi akan kita lengkapi berikutnya.</p>
+                </div>
+            </section>
+
+            <section id="reportsSection" hidden>
+                <div class="content-card">
+                    <h2>Laporan Penjualan</h2>
+                    <p>Halaman laporan akan kita lengkapi berikutnya.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
-
