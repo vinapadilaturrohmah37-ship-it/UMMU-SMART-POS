@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#7041A6">
+    <title>UMMU SMART POS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HALAMAN LOGIN -->
+    <div class="login-container" id="loginPage">
+        <div class="login-card">
+            <div class="logo">U</div>
+            <h1>UMMU SMART POS</h1>
+            <p class="subtitle">Smart Point Of Sale System</p>
+
+            <div class="role-selection">
+                <button type="button" class="role-btn active"
+                    onclick="selectRole('admin', this)">Admin</button>
+                <button type="button" class="role-btn"
+                    onclick="selectRole('customer', this)">Pelanggan</button>
+            </div>
+
+            <form id="loginForm">
+                <label>Username</label>
+                <input type="text" id="username"
+                    placeholder="Masukkan username" required>
+
+                <label>Password</label>
+                <input type="password" id="password"
+                    placeholder="Masukkan password" required>
+
+                <button type="submit" class="login-btn">MASUK SEKARANG</button>
+            </form>
+
+            <p class="login-info" id="loginInfo">Login sebagai Admin</p>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard" id="dashboardPage" hidden>
+
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <span>U</span>
+                <h2>UMMU POS</h2>
+            </div>
+
+            <p class="menu-title">MENU UTAMA</p>
+
+            <button class="menu-btn active"
+                onclick="showPage('dashboard')">🏠 Dashboard</button>
+
+            <button class="menu-btn"
+                onclick="showPage('products')">📦 Produk</button>
+
+            <button class="menu-btn"
+                onclick="showPage('transactions')">🛒 Transaksi</button>
+
+            <button class="menu-btn"
+                onclick="showPage('reports')">📊 Laporan</button>
+
+            <button class="logout-btn" onclick="logout()">Keluar</button>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <h2 id="welcomeTitle">Dashboard</h2>
+                    <p>Selamat datang di UMMU SMART POS</p>
+                </div>
+                <div class="profile">
+                    <span>👤</span>
+                    <strong id="profileName">Admin</strong>
+                </div>
+            </header>
+
+            <!-- DASHBOARD -->
+            <section id="dashboardSection">
+                <div class="welcome-card">
+                    <div>
+                        <h2>Selamat Datang! 💜</h2>
+                        <p>Kelola penjualan tokomu dengan mudah.</p>
+                    </div>
+                    <div class="welcome-icon">💛</div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <p>Total Produk</p>
+                        <h2 id="totalProducts">0</h2>
+                    </div>
+                    <div class="stat-card">
+                        <p>Total Transaksi</p>
+                        <h2 id="totalTransactions">0</h2>
+                    </div>
+                    <div class="stat-card">
+                        <p>Total Penjualan</p>
+                        <h2 id="totalSales">Rp0</h2>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Informasi Aplikasi</h3>
+                    <p>UMMU SMART POS siap membantu kegiatan penjualan tokomu.</p>
+                </div>
+            </section>
+
+            <!-- MANAJEMEN PRODUK -->
+            <section id="productsSection" hidden>
+                <div class="content-card">
+                    <h2>📦 Manajemen Produk</h2>
+                    <p>Tambahkan dan kelola barang yang dijual.</p>
+
+                    <form id="productForm" class="app-form">
+                        <input type="hidden" id="productId">
+
+                        <label>Nama Barang</label>
+                        <input id="productName" type="text"
+                            placeholder="Contoh: Beras 5 Kg" required>
+
+                        <label>Kategori</label>
+                        <input id="productCategory" type="text"
+                            placeholder="Contoh: Sembako" required>
+
+                        <label>Harga Jual (Rp)</label>
+                        <input id="productPrice" type="number"
+                            min="1" placeholder="Contoh: 75000" required>
+
+                        <label>Stok Barang</label>
+                        <input id="productStock" type="number"
+                            min="0" placeholder="Contoh: 20" required>
+
+                        <div class="form-actions">
+                            <button type="submit" class="primary-btn"
+                                id="saveProductBtn">Simpan Produk</button>
+                            <button type="button" class="secondary-btn"
+                                onclick="resetProductForm()">Batal</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="content-card">
+                    <h3>Daftar Produk</h3>
+                    <input type="search" id="productSearch"
+                        placeholder="Cari nama barang..." class="search-input">
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Barang</th>
+                                    <th>Kategori</th>
+                                    <th>Harga</th>
+                                    <th>Stok</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productTable">
+                                <tr><td colspan="6">Belum ada produk.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRANSAKSI -->
+            <section id="transactionsSection" hidden>
+                <div class="content-card">
+                    <h2>🛒 Transaksi Penjualan</h2>
+                    <p>Pilih produk untuk dimasukkan ke keranjang.</p>
+
+                    <div class="app-form">
+                        <label>Pilih Barang</label>
+                        <select id="transactionProduct">
+                            <option value="">-- Pilih Produk --</option>
+                        </select>
+
+                        <label>Jumlah Barang</label>
+                        <input type="number" id="transactionQty"
+                            min="1" value="1">
+
+                        <button type="button" class="primary-btn"
+                            onclick="addToCart()">+ Tambahkan ke Keranjang</button>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Keranjang Belanja</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Barang</th>
+                                    <th>Harga</th>
+                                    <th>Jumlah</th>
+                                    <th>Subtotal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartTable">
+                                <tr><td colspan="5">Keranjang masih kosong.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="checkout">
+                        <h3>Total: <span id="cartTotal">Rp0</span></h3>
+
+                        <label>Uang Pembayaran (Rp)</label>
+                        <input type="number" id="paymentAmount"
+                            min="0" placeholder="Masukkan jumlah pembayaran">
+
+                        <h3>Kembalian: <span id="changeAmount">Rp0</span></h3>
+
+                        <button type="button" class="primary-btn"
+                            onclick="completeTransaction()">Selesaikan Transaksi</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LAPORAN -->
+            <section id="reportsSection" hidden>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <p>Total Pendapatan</p>
+                        <h2 id="reportRevenue">Rp0</h2>
+                    </div>
+                    <div class="stat-card">
+                        <p>Jumlah Transaksi</p>
+                        <h2 id="reportCount">0</h2>
+                    </div>
+                    <div class="stat-card">
+                        <p>Barang Terjual</p>
+                        <h2 id="reportItems">0</h2>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h2>📊 Riwayat Penjualan</h2>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tanggal</th>
+                                    <th>Nomor Transaksi</th>
+                                    <th>Total</th>
+                                    <th>Pembayaran</th>
+                                    <th>Kembalian</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reportTable">
+                                <tr><td colspan="6">Belum ada transaksi.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
